@@ -2,13 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DrawLine : MonoBehaviour 
+public class DrawLine : DragAction 
 {
 	private LineRenderer line;
-	private bool isMousePressed;
-	private bool justPressed;
 	public List<Vector3> pointsList;
-	public bool active = false;
 	private Vector3 mousePos;
 
 	struct myLine
@@ -36,8 +33,7 @@ public class DrawLine : MonoBehaviour
 	}
 	private void LineToMouse()
 	{
-		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mousePos.z=0;
+		mousePos = GetPointerPosition ();
 		if (!pointsList.Contains (mousePos)) 
 		{
 			pointsList.Add (mousePos);
@@ -45,17 +41,11 @@ public class DrawLine : MonoBehaviour
 			line.SetPosition (pointsList.Count - 1, (Vector3)pointsList [pointsList.Count - 1]);
 		}
 	}
-	private void Update()
+	public override void Update ()
 	{
+		base.Update ();
 		if (active) {
-			justPressed = false;
-			if (Input.GetMouseButtonDown (0)) {
-				isMousePressed = true;
-				justPressed = true;
-			} else if (Input.GetMouseButtonUp (0)) {
-				isMousePressed = false;
-				active = false;
-			}
+			GetComponent<SpriteRenderer> ().color = Color.red;
 			if (justPressed) {
 				ResetLine (Color.red);
 			}

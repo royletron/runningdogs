@@ -15,10 +15,6 @@ public class RunController : MonoBehaviour {
 	private float speed;
 	public bool running = false;
 
-	// Use this for initialization
-	void Start () {
-	}
-
 	// Update is called once per frame
 	void Update () {
 		// check if we have somewere to walk
@@ -27,17 +23,24 @@ public class RunController : MonoBehaviour {
 				speed = GetComponent<PlayerController> ().speed;
 				pointsList = this.GetComponent<DrawLine>().pointsList;
 				currentPoint = 0;
-				targetPoint = pointsList [currentPoint];
 			}
 			if (currentPoint < pointsList.Count) {
 				if (targetPoint == null)
 					targetPoint = pointsList [currentPoint];
 				walk ();
+			} else {
+				running = false;
 			}
 		}
 	}
 
+	public void Reset() {
+		currentPoint = 0;
+		running = false;
+	}
+
 	void walk(){
+		targetPoint = pointsList [currentPoint];
 		transform.position = Vector3.MoveTowards(transform.position, targetPoint,   speed*Time.deltaTime);
 		Vector3 vectorToTarget = targetPoint - transform.position;
 		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
@@ -46,7 +49,6 @@ public class RunController : MonoBehaviour {
 		if(transform.position == targetPoint)
 		{
 			currentPoint ++ ;
-			targetPoint = pointsList[currentPoint];
 		}
 	} 
 }

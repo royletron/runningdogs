@@ -2,8 +2,9 @@
 using System.Collections;
 
 public class PlayControl : MonoBehaviour {
-	public GameMode mode = GameMode.run;
 	// Use this for initialization
+	public static PlayerController[] players = new PlayerController[20];
+	public static int counter = 0;
 	void Start () {
 	
 	}
@@ -14,6 +15,27 @@ public class PlayControl : MonoBehaviour {
 	}
 
 	public void ChangeMode(GameMode changeTo) {
-		print (changeTo);
+		ControllerModes.mode = changeTo;
+		foreach (ModeButton button in GetComponentsInChildren<ModeButton> ()) {
+			if (button.modeToChange == ControllerModes.mode) {
+				button.GetComponent<SpriteRenderer> ().color = Color.red;
+			} else {
+				button.GetComponent<SpriteRenderer> ().color = Color.white;
+			}
+		}
+		if (changeTo == GameMode.reset) {
+			foreach (PlayerController player in players) {
+				if (player != null) {
+					player.Reset ();
+				}
+			}
+		}
+		if (changeTo == GameMode.play) {
+			foreach (PlayerController player in players) {
+				if(player != null){
+					player.GetComponent<RunController> ().running = true;
+				}
+			}
+		}
 	}
 }

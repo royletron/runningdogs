@@ -10,5 +10,5 @@ public enum PlayerPosition {
 }
 
 public enum GameMode {
-	play, run, pass, def, move
+	play, run, pass, def, move, reset
 }
