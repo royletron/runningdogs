@@ -7,23 +7,25 @@ public class LineObject{
 	private GameObject lineObject;
 	private LineRenderer line;
 	public List<Vector3> pointsList;
+	public Color color = Color.red;
 
-	public LineObject() {
+	public LineObject(GameObject parent) {
 		lineObject = new GameObject ();
+		lineObject.transform.parent = parent.transform;
 		line = lineObject.AddComponent<LineRenderer>();
 		line.material =  new Material(Shader.Find("Particles/Additive"));
 		line.SetVertexCount(0);
-		line.SetWidth(0.0f,0.1f);
-		line.SetColors(Color.red, Color.red);
+		line.SetWidth(0.1f,0.1f);
+		line.SetColors(color, color);
 		line.useWorldSpace = true;	
 		pointsList = new List<Vector3>();
 	}
 
-	public void ResetLine(Color col)
+	public void ResetLine()
 	{
 		line.SetVertexCount (0);
 		pointsList.RemoveRange(0,pointsList.Count);
-		line.SetColors (col, col);
+		line.SetColors (color, color);
 	}
 
 	public void LineToPoint(Vector3 point)

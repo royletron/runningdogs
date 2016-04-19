@@ -11,10 +11,10 @@ public class DrawLine : DragAction
 	{
 		isMousePressed = false;
 	}
-	private void ResetLine(Color col)
+	private void ResetLine()
 	{
 		Debug.Log ("reset");
-		currentLine.ResetLine (col);
+		currentLine.ResetLine ();
 	}
 	private void LineToMouse()
 	{
@@ -28,7 +28,7 @@ public class DrawLine : DragAction
 		if (active) {
 			GetComponent<SpriteRenderer> ().color = Color.red;
 			if (justPressed) {
-				ResetLine (Color.red);
+				ResetLine ();
 			}
 			// Drawing line when mouse is moving(presses)
 			if (isMousePressed) {

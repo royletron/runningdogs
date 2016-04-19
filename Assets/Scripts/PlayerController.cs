@@ -30,8 +30,10 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		PlayControl.players [PlayControl.counter] = this;
 		PlayControl.counter++;
-		runLine = new LineObject ();
-		throwLine = new LineObject ();
+		runLine = new LineObject (this.gameObject);
+		runLine.color = Color.blue;
+		throwLine = new LineObject (this.gameObject);
+		throwLine.color = Color.red;
 		initialPos = transform.position;
 		initialRotation = transform.rotation;
 		drawLine = GetComponentInChildren<DrawLine> ();
@@ -59,6 +61,10 @@ public class PlayerController : MonoBehaviour {
 		switch(ControllerModes.mode){
 		case GameMode.run:
 			drawLine.currentLine = runLine;
+			drawLine.active = true;
+			break;
+		case GameMode.pass:
+			drawLine.currentLine = throwLine;
 			drawLine.active = true;
 			break;
 		case GameMode.move:
