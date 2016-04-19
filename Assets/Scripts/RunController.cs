@@ -15,13 +15,19 @@ public class RunController : MonoBehaviour {
 	private float speed;
 	public bool running = false;
 
+	private PlayerController player;
+
+	void Start() {
+		player = GetComponent<PlayerController> ();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		// check if we have somewere to walk
 		if(running) {
 			if (pointsList == null) {
-				speed = GetComponent<PlayerController> ().speed;
-				pointsList = this.GetComponent<DrawLine>().pointsList;
+				speed = player.speed;
+				pointsList = player.runLine.pointsList;
 				currentPoint = 0;
 			}
 			if (currentPoint < pointsList.Count) {

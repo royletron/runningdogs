@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayControl : MonoBehaviour {
 	// Use this for initialization
-	public static PlayerController[] players = new PlayerController[20];
+	public static PlayerController[] players = new PlayerController[22];
 	public static int counter = 0;
 	void Start () {
 	

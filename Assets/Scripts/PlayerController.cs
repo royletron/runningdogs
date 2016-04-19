@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour {
 	private Quaternion initialRotation;
 	public Sprite awaySprite;
 	public Sprite homeSprite;
+
+	public LineObject runLine;
+	public LineObject throwLine;
+	private DrawLine drawLine;
 	// Use this for initialization
 	void Awake()
 	{
@@ -26,8 +30,11 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		PlayControl.players [PlayControl.counter] = this;
 		PlayControl.counter++;
+		runLine = new LineObject ();
+		throwLine = new LineObject ();
 		initialPos = transform.position;
 		initialRotation = transform.rotation;
+		drawLine = GetComponentInChildren<DrawLine> ();
 	}
 
 	void OnValidate() {
@@ -51,7 +58,8 @@ public class PlayerController : MonoBehaviour {
 	void OnMouseDown() {
 		switch(ControllerModes.mode){
 		case GameMode.run:
-			GetComponentInChildren<DrawLine> ().active = true;
+			drawLine.currentLine = runLine;
+			drawLine.active = true;
 			break;
 		case GameMode.move:
 			GetComponentInChildren<MovePlayer> ().active = true;

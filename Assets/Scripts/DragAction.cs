@@ -4,8 +4,8 @@ using System.Collections;
 public class DragAction : MonoBehaviour
 {
 	public bool active = false;
-	public bool isMousePressed;
-	public bool justPressed;
+	public bool isMousePressed = false;
+	public bool justPressed = false;
 
 	// Update is called once per frame
 	public virtual void Update ()
