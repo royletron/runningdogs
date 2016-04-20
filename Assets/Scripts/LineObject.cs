@@ -70,7 +70,7 @@ public class LineObject{
 	
 	}
 
-	public bool isLineCollide(Vector3 start, Vector3 end)
+	public bool isLineCollide(Vector3 start, Vector3 end, ref Vector2 intersect)
 	{
 		Vector2 p3 = new Vector2 (start.x, start.y);
 		Vector2 p4 = new Vector2 (end.x, end.y);
@@ -94,9 +94,8 @@ public class LineObject{
 //			currentLine.EndPoint = end;
 //			if (isLinesIntersect (lines [i], currentLine)) 
 //				return true;
-			Vector2 intersect = new Vector2();
 			Vector2 p1 = new Vector2 (lines [i].StartPoint.x, lines [i].StartPoint.y);
-			Vector2 p2 = new Vector2 (lines [i].EndPoint.x, lines [i].EndPoint.x);
+			Vector2 p2 = new Vector2 (lines [i].EndPoint.x, lines [i].EndPoint.y);
 			if (LineIntersection (p1, p2, p3, p4, ref intersect)) {
 				Debug.Log (intersect);
 				return true;

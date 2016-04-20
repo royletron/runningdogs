@@ -29,7 +29,11 @@ public class DrawLine : DragAction
 			foreach (PlayerController player in PlayControl.players) {
 				if (player != currentPlayer) {
 					if (player.side == currentPlayer.side) {
-						Debug.Log (player.runLine.isLineCollide (currentPlayer.throwLine.pointsList [0], currentPlayer.throwLine.pointsList [1]));
+						Vector2 collision = new Vector2();
+						if (player.runLine.isLineCollide (currentPlayer.throwLine.pointsList [0], currentPlayer.throwLine.pointsList [1], ref collision)) {
+							GameObject selector = (GameObject)Instantiate(Resources.Load("Prefabs/Selection"));
+							selector.transform.position = new Vector3 (collision.x, collision.y, 0);
+						}
 					}
 				}
 			}
