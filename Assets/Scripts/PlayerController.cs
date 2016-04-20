@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 		runLine = new LineObject (this.gameObject);
 		runLine.color = Color.blue;
 		throwLine = new LineObject (this.gameObject);
+		throwLine.straight = throwLine.checkCollide = true;
 		throwLine.color = Color.red;
 		initialPos = transform.position;
 		initialRotation = transform.rotation;

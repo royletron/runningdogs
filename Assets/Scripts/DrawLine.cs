@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class DrawLine : DragAction 
 {
 	public LineObject currentLine;
@@ -13,14 +14,26 @@ public class DrawLine : DragAction
 	}
 	private void ResetLine()
 	{
-		Debug.Log ("reset");
 		currentLine.ResetLine ();
 	}
 	private void LineToMouse()
 	{
-		Debug.Log ("Draw");
 		mousePos = GetPointerPosition ();
 		currentLine.LineToPoint (mousePos);
+	}
+	public override void Finished ()
+	{
+		base.Finished ();
+		if (currentLine.checkCollide) {
+			PlayerController currentPlayer = GetComponent<PlayerController> ();
+			foreach (PlayerController player in PlayControl.players) {
+				if (player != currentPlayer) {
+					if (player.side == currentPlayer.side) {
+						Debug.Log (player.runLine.isLineCollide (currentPlayer.throwLine.pointsList [0], currentPlayer.throwLine.pointsList [1]));
+					}
+				}
+			}
+		}
 	}
 	public override void Update ()
 	{
@@ -36,5 +49,7 @@ public class DrawLine : DragAction
 			}
 		}
 	}
+
+
 
 }

@@ -16,11 +16,15 @@ public class DragAction : MonoBehaviour
 				isMousePressed = true;
 				justPressed = true;
 			} else if (Input.GetMouseButtonUp (0) && (Input.touchCount == 0)) {
-				isMousePressed = false;
-				active = false;
-				GetComponent<SpriteRenderer> ().color = Color.white;
+				Finished ();
 			}
 		}
+	}
+
+	public virtual void Finished() {
+		isMousePressed = false;
+		active = false;
+		GetComponent<SpriteRenderer> ().color = Color.white;
 	}
 
 	public Vector3 GetPointerPosition()
