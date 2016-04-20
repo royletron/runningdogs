@@ -12,10 +12,10 @@ public class DragAction : MonoBehaviour
 	{
 		if (active) {
 			justPressed = false;
-			if (Input.GetMouseButtonDown (0) || ((Input.touchCount > 0) && (Input.touches [0].phase == TouchPhase.Began))) {
+			if (Input.GetMouseButtonDown (0)) {
 				isMousePressed = true;
 				justPressed = true;
-			} else if (Input.GetMouseButtonUp (0) && (Input.touchCount == 0)) {
+			} else if (Input.GetMouseButtonUp (0)) {
 				Finished ();
 			}
 		}

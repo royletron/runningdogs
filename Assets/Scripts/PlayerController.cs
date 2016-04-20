@@ -25,9 +25,6 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Awake()
 	{
-		// load all frames in fruitsSprites array
-	}
-	void Start () {
 		PlayControl.players [PlayControl.counter] = this;
 		PlayControl.counter++;
 		runLine = new LineObject (this.gameObject);

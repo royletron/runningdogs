@@ -22,7 +22,7 @@ public class LineObject{
 		lineObject = new GameObject ();
 		lineObject.transform.parent = parent.transform;
 		line = lineObject.AddComponent<LineRenderer>();
-		line.material =  new Material(Shader.Find("Particles/Additive"));
+		line.material =  new Material(Shader.Find("Mobile/Particles/Additive"));
 		line.SetVertexCount(0);
 		line.SetWidth(0.1f,0.1f);
 		line.SetColors(color, color);
